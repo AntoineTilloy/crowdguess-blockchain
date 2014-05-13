@@ -1,4 +1,5 @@
 import httplib,urllib
+import json
    
 HOSTNAME = 'blockchain.info'
 url='/merchant/5ea4b688-da07-4d3b-8fe8-90baf14df521/'
@@ -20,4 +21,6 @@ values = urllib.urlencode(values)
 conn = httplib.HTTPSConnection(HOSTNAME)
 conn.request('POST',url+method,values,headers)
 response = conn.getresponse()
-print response.read()
+response=response.read()
+response=json.loads(response)
+print response['balance']
